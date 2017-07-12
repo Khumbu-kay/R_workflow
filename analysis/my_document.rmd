@@ -1,0 +1,23 @@
+## Cleaning
+
+For the remainder of the report, we will look only at data from the year 1995. We aggregate our data by location, using the *R* code below.
+
+```{r}
+library(nasaweather)
+library(dplyr)
+library(ggvis)
+
+year <- 1995
+
+means <- atmos %>%
+  filter(year == year) %>%
+  group_by(long, lat) %>%
+  summarize(temp = mean(temp, na.rm = FALSE),
+         pressure = mean(pressure, na.rm = FALSE),
+         ozone = mean(ozone, na.rm = FALSE),
+         cloudlow = mean(cloudlow, na.rm = FALSE),
+         cloudmid = mean(cloudmid, na.rm = FALSE),
+         cloudhigh = mean(cloudhigh, na.rm = FALSE)) %>%
+  ungroup()
+```
+
